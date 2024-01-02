@@ -1,14 +1,14 @@
 // femaleNames.js
-import femaleNames from './femaleNames.json' assert { type: `json` };
+import * as femaleNames from './femaleNames.json';
 
 // femaleNicknames.js
-import femaleNicknames from './femaleNicknames.json' assert { type: `json` };
+import * as femaleNicknames from './femaleNicknames.json';
 
 // maleNames.js
-import maleNames from './maleNames.json' assert { type: `json` };
+import * as maleNames from './maleNames.json';
 
 // maleNicknames.js
-import maleNicknames from './maleNicknames.json' assert { type: `json` };
+import * as maleNicknames from './maleNicknames.json';
 
 // Exporting all the data
 export {
