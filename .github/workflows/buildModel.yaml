@@ -1,0 +1,28 @@
+name: Run Merge Script
+
+on:
+  workflow_dispatch:
+    inputs:
+      script-path:
+        description: 'Path to the script file'
+        required: false
+        default: 'script.js'
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '14'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Merge Script
+        run: node .src/buildModel.js
