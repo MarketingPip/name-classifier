@@ -1,5 +1,11 @@
 {
   "name": "your-package-name",
   "version": "1.0.0",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@nlpjs/core": "^4.26.1",
+    "@nlpjs/lang-en": "^4.26.1",
+    "@nlpjs/nlp": "^4.27.0",
+    "node-nlp": "^4.27.0"
+  }
 }
