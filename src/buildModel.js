@@ -106,7 +106,7 @@ writeToFile();
 writeToFileAgain()
 
 
-needsClassifier = (typeof Classifier === 'undefined')
+let needsClassifier = (typeof Classifier === 'undefined')
 if (needsClassifier) {
 Classifier = class {
     constructor() {
