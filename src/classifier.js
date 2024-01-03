@@ -1,7 +1,7 @@
 import { NlpManager } from 'node-nlp';
 import { promises as fs } from 'fs';
 
-const manager = new NlpManager({ languages: ['en'] });
+const manager = new NlpManager({ languages: ['en'], nlu: { log: false }  });
 
 (async () => {
   const nlp = manager;
