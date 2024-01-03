@@ -34,8 +34,9 @@ jobs:
       - name: Install dependenciess     
         run: npm i @nlpjs/core
       - name: Install dependenciess     
-        run: npm install node-nlp
-
+        run: npm install node-nlp 
+      - name: Install dependenciess     
+        run: npm install unidecode
       - name: Run Merge Script
         run: node ./src/classifier.js
 
