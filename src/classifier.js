@@ -26,8 +26,50 @@ const manager = new NlpManager({ languages: ['en'] });
   //await fs.writeFile('nlpModel.json', nlpModel, 'utf8');
 
   // Process the input text
-  const response = await nlp.process('en', "Jared");
-  console.log(response)
+  let response = await nlp.process('en', "Jared");
+  console.log(response.answer + "Expected male")
+
+  response = await nlp.process('en', "Ryan Joesph");
+  console.log(response.answer + "Expected male") 
+
+  response = await nlp.process('en', "Jessie Jackson");
+  console.log(response.answer + "Expected male") 
+
+  response = await nlp.process('en', "Homer");
+  console.log(response.answer + "Expected male") 
+
+
+  response = await nlp.process('en', "Robert");
+  console.log(response.answer + "Expected male") 
+  
+    response = await nlp.process('en', "Bob");
+  console.log(response.answer + "Expected male") 
+  
+
+    response = await nlp.process('en', "Lorie Lynn");
+  console.log(response.answer + "Expected female") 
+
+    response = await nlp.process('en', "Hayley");
+  console.log(response.answer + "Expected female") 
+
+    response = await nlp.process('en', "Cassie");
+  console.log(response.answer + "Expected female") 
+
+
+    response = await nlp.process('en', "Bobbi");
+  console.log(response.answer + "Expected female") 
+
+  response = await nlp.process('en', "Roberta");
+  console.log(response.answer + "Expected female") 
+
+  response = await nlp.process('en', "Bobbi Brown");
+  console.log(response.answer + "Expected female") 
+  
+      response = await nlp.process('en', "Lisa");
+  console.log(response.answer + "Expected female") 
+
+
+  
   if (response.intent == 'None') {
    // console.log('NO_ANSWER');
   } else {
