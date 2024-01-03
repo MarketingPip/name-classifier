@@ -25,26 +25,27 @@ console.log('Merged Male Names:', mergedMaleNames);
 console.log('Merged Female Names:', mergedFemaleNames);
 console.log('Final Female Names (after removing duplicates and filtering):', finalFemaleNames);
 
-const corpus =  {
+const corpus = {
   "name": "Corpus",
   "locale": "en-US",
   "data": [
     {
       "intent": "male",
-      "utterances": [...mergedMaleNames],
+      "utterances": [...mergedMaleNames.map(name => name.toLowerCase())],
       "answers": [
         "male"
       ]
     },
     {
       "intent": "female",
-      "utterances": [...finalFemaleNames],
+      "utterances": [...finalFemaleNames.map(name => name.toLowerCase())],
       "answers": [
         "female"
       ]
     },    
   ]
-} 
+};
+
 
 
 async function writeToFile() {
