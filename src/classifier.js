@@ -23,10 +23,10 @@ const manager = new NlpManager({ languages: ['en'] });
   const nlpModel = nlp.export(minified);
 
   // Save the model to a JSON file
-  await fs.writeFile('nlpModel.json', nlpModel, 'utf8');
+  //await fs.writeFile('nlpModel.json', nlpModel, 'utf8');
 
   // Process the input text
-  const response = await nlp.process('en', "Hakifred");
+  const response = await nlp.process('en', "Jared");
   console.log(response)
   if (response.intent == 'None') {
    // console.log('NO_ANSWER');
