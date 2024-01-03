@@ -27,6 +27,7 @@ const manager = new NlpManager({ languages: ['en'] });
 
   // Process the input text
   const response = await nlp.process('en', "Hakifred");
+  console.log(resoibse)
   if (response.intent == 'None') {
    // console.log('NO_ANSWER');
   } else {
