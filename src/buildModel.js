@@ -6,6 +6,13 @@ import {
   maleNicknames,
 } from './index.js';
 
+//import unorm from 'unorm';
+ import unidecode from 'unidecode'
+
+function normalizeString(inputString) {
+  return unidecode(inputString)
+}
+
 import { promises as fsPromises } from 'fs';
 
 // Merge arrays and remove duplicates
@@ -31,14 +38,14 @@ const corpus = {
   "data": [
     {
       "intent": "male",
-      "utterances": ["Bob"],
+      "utterances": [...mergedMaleNames.map(name => normalizeString(name.toLowerCase()))],
       "answers": [
         "male"
       ]
     },
     {
       "intent": "female",
-      "utterances": ["Lorie"],
+      "utterances": [...finalFemaleNames.map(name => normalizeString(name.toLowerCase()))],
       "answers": [
         "female"
       ]
