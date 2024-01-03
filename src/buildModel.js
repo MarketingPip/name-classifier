@@ -104,3 +104,186 @@ async function writeToFile() {
 
 writeToFile();
 writeToFileAgain()
+
+
+needsClassifier = (typeof Classifier === 'undefined')
+if (needsClassifier) {
+Classifier = class {
+    constructor() {
+        this.dict = {};
+        this.categories = {};
+        this.wordList = [];
+        this.categoryList = []
+    }
+    static validate(token) {
+        return /\w+/.test(token)
+    }
+    increment(token, category) {
+        this.categories[category].tokenCount += 1;
+        let word = this.dict[token];
+        if (word === undefined) {
+            this.dict[token] = {
+                word: token,
+                [category]: {
+                    count: 1
+                }
+            };
+            this
+                .wordList
+                .push(token)
+        } else if (word[category] === undefined) {
+            word[category] = {
+                count: 1
+            }
+        } else {
+            word[category].count += 1
+        }
+    }
+    train(data, category) {
+        if (this.categories[category] === undefined) {
+            this.categories[category] = {
+                docCount: 1,
+                tokenCount: 0
+            };
+            this
+                .categoryList
+                .push(category)
+        } else {
+            this.categories[category].docCount += 1
+        }
+        let tokens = data.split(/\W+/);
+        tokens.forEach(token => {
+            token = token.toLowerCase();
+            if (Classifier.validate(token)) {
+                this.increment(token, category)
+            }
+        })
+    }
+    trainlist(datalist, category) {
+        let i = 0;
+        if (this.categories[category] === undefined) {
+            this.categories[category] = {
+                docCount: 1,
+                tokenCount: 0
+            };
+            this
+                .categoryList
+                .push(category)
+        } else {
+            this.categories[category].docCount += 1
+        }
+        for (i=0; i<datalist.length; i++) {
+            let data = datalist[i]
+            let tokens = data.split(/\W+/);
+            tokens.forEach(token => {
+                token = token.toLowerCase();
+                if (Classifier.validate(token)) {
+                    this.increment(token, category)
+                }
+            })
+        }
+    }
+    probabilities() {
+        this
+            .wordList
+            .forEach(key => {
+                let word = this.dict[key];
+                this
+                    .categoryList
+                    .forEach(category => {
+                        if (word[category] === undefined) {
+                            word[category] = {
+                                count: 0
+                            }
+                        }
+                        let wordCat = word[category];
+                        let cat = this.categories[category];
+                        let freq = wordCat.count / cat.docCount;
+                        wordCat.freq = freq
+                    })
+            });
+        this
+            .wordList
+            .forEach(key => {
+                let word = this.dict[key];
+                this
+                    .categoryList
+                    .forEach(category => {
+                        let sum = this
+                            .categoryList
+                            .reduce((p, cat) => {
+                                let freq = word[cat].freq;
+                                if (freq) {
+                                    return p + freq
+                                }
+                                return p
+                            }, 0);
+                        let wordCat = word[category];
+                        let prob = wordCat.freq / sum;
+                        wordCat.prob = Math.max(0.01, Math.min(0.99, prob))
+                    })
+            })
+    }
+    guess(data) {
+        let tokens = data.split(/\W+/);
+        let words = [];
+        tokens.forEach(token => {
+            token = token.toLowerCase();
+            if (Classifier.validate(token)) {
+                if (this.dict[token] !== undefined) {
+                    let word = this.dict[token];
+                    words.push(word)
+                }
+            } else {}
+        });
+        let sum = 0;
+        let products = this
+            .categoryList
+            .reduce((product, category) => {
+                product[category] = words.reduce((prob, word) => {
+                    return prob * word[category].prob
+                }, 1);
+                sum += product[category];
+                return product
+            }, {});
+        let results = {};
+        this
+            .categoryList
+            .forEach(category => {
+                results[category] = {
+                    probability: products[category] / sum
+                };
+            });
+        return results
+    }
+}
+}
+if (typeof classifier == 'undefined') {
+    classifier = new Classifier();
+}
+classifier.trainlist([...mergedMaleNames.map(name => normalizeString(name.toLowerCase()))], "male");
+classifier.trainlist([...finalFemaleNames.map(name => normalizeString(name.toLowerCase()))], "female");
+classifier.probabilities();
+results = classifier.guess("Bob");
+console.log(results);
+
+results = classifier.guess("Lorie");
+console.log(results);
+
+results = classifier.guess("Bobbi");
+console.log(results);
+
+results = classifier.guess("Hayley");
+console.log(results);
+
+results = classifier.guess("Ryan Joesph");
+console.log(results);
+
+results = classifier.guess("Bobby");
+console.log(results);
+
+results = classifier.guess("Hakizama");
+console.log(results);
+
+results = classifier.guess("Hakifred");
+console.log(results);
