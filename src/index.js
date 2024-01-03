@@ -1,15 +1,15 @@
 // femaleNames.js
-const femaleNames =  require('./femaleNames.json')
+import * as femaleNames from './femaleNames.json'
 
 
 // femaleNicknames.js
-const femaleNicknames= require('./femaleNicknames.json')
+import * as femaleNicknames from './femaleNicknames.json'
 
 // maleNames.js
-const maleNames = require('./maleNames.json')
+import * as maleNames from './maleNames.json'
 
 // maleNicknames.js
-const maleNicknames = require('./maleNicknames.json')
+import * as maleNicknames from './maleNicknames.json'
 
 // Exporting all the data
 export {
