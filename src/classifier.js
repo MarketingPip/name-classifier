@@ -1,68 +1,78 @@
-// index.js
-import {
-  femaleNames,
-  femaleNicknames,
-  maleNames,
-  maleNicknames,
-} from './index.js';
+import { NlpManager } from 'node-nlp';
+import { promises as fs } from 'fs';
 
-//import unorm from 'unorm';
- import unidecode from 'unidecode'
+const manager = new NlpManager({ languages: ['en'] });
 
-function normalizeString(inputString) {
-  return unidecode(inputString)
-}
+(async () => {
+  const nlp = manager;
+  nlp.settings.autoSave = false;
+  nlp.addLanguage('en');
 
-import { promises as fsPromises } from 'fs';
+  // Load corpus data from a JSON file
+  const corpusData = await fs.readFile('./corpus.json', 'utf8');
+  const corpus = JSON.parse(corpusData);
 
-// Merge arrays and remove duplicates
-const mergeAndRemoveDuplicates = (array1, array2) => Array.from(new Set([...array1, ...array2]));
+  // Add the corpus data to the manager
+  nlp.addCorpus(corpus);
 
-// Merge maleNames and maleNicknames, remove duplicates
-const mergedMaleNames = mergeAndRemoveDuplicates(maleNames, maleNicknames);
+  // Train the model
+  await nlp.train();
+  //nlp.save();
 
-// Merge femaleNames and femaleNicknames, remove duplicates
-const mergedFemaleNames = mergeAndRemoveDuplicates(femaleNames, femaleNicknames);
+  const minified = true;
+  const nlpModel = nlp.export(minified);
 
-// Remove items in final femaleNames found in final maleNames
-const finalFemaleNames = mergedFemaleNames.filter(name => !mergedMaleNames.includes(name));
+  // Save the model to a JSON file
+  //await fs.writeFile('nlpModel.json', nlpModel, 'utf8');
 
-// Console log the results
-console.log('Merged Male Names:', mergedMaleNames);
-console.log('Merged Female Names:', mergedFemaleNames);
-console.log('Final Female Names (after removing duplicates and filtering):', finalFemaleNames);
+  // Process the input text
+  let response = await nlp.process('en', "Jared");
+  console.log(response)
 
-const corpus = {
-  "name": "Corpus",
-  "locale": "en-US",
-  "data": [
-    {
-      "intent": "male",
-      "utterances": [...mergedMaleNames.map(name => normalizeString(name.toLowerCase()))],
-      "answers": [
-        "male"
-      ]
-    },
-    {
-      "intent": "female",
-      "utterances": [...finalFemaleNames.map(name => normalizeString(name.toLowerCase()))],
-      "answers": [
-        "female"
-      ]
-    },    
-  ]
-};
+  response = await nlp.process('en', "Ryan Joesph");
+  console.log(response) 
+
+  response = await nlp.process('en', "Jessie Jackson");
+  console.log(response) 
+
+  response = await nlp.process('en', "Homer");
+  console.log(response) 
 
 
+  response = await nlp.process('en', "Robert");
+  console.log(response)
+  
+    response = await nlp.process('en', "Bob");
+  console.log(response) 
+  
 
-async function writeToFile() {
-  try {
-    const jsonString = JSON.stringify(corpus);
-    await fsPromises.writeFile('./src/corpus.json', jsonString);
-    console.log('Data has been written to corpus.json');
-  } catch (error) {
-    console.error('Error writing to file:', error);
+    response = await nlp.process('en', "Lorie Lynn");
+  console.log(response) 
+
+    response = await nlp.process('en', "Hayley");
+  console.log(response) 
+
+    response = await nlp.process('en', "Cassie");
+  console.log(response) 
+
+
+    response = await nlp.process('en', "Bobbi");
+  console.log(response) 
+
+  response = await nlp.process('en', "Roberta");
+  console.log(response) 
+
+  response = await nlp.process('en', "Bobbi Brown");
+  console.log(response) 
+  
+      response = await nlp.process('en', "Lisa");
+  console.log(response) 
+
+
+  
+  if (response.intent == 'None') {
+   // console.log('NO_ANSWER');
+  } else {
+    console.log(`ANSWER: This issue looks similar to a closed issue: ${response.answer}`);
   }
-}
-
-writeToFile();
+})();
