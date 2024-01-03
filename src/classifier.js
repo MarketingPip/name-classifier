@@ -9,7 +9,7 @@ const manager = new NlpManager({ languages: ['en'] });
   nlp.addLanguage('en');
 
   // Load corpus data from a JSON file
-  const corpusData = await fs.readFile('../corpus.json', 'utf8');
+  const corpusData = await fs.readFile('./corpus.json', 'utf8');
   const corpus = JSON.parse(corpusData);
 
   // Add the corpus data to the manager
