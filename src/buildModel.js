@@ -32,8 +32,8 @@ const femaleSplitObjects = [];
 const maleIntent = "male";
 const femaleIntent = "female";
 
-const maleNames = mergedMaleNames.map(name => name.toLowerCase());
-const femaleNames = finalFemaleNames.map(name => name.toLowerCase());
+//const maleNames = mergedMaleNames.map(name => name.toLowerCase());
+//const femaleNames = finalFemaleNames.map(name => name.toLowerCase());
 
 // Function to split an array into chunks
 function chunkArray(array, chunkSize) {
