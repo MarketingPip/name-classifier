@@ -45,7 +45,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add -u
+          git add -A
           git reset -- node_modules
           git commit -m "Auto-commit changes after running merge script"
           git push
