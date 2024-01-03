@@ -50,7 +50,7 @@ const corpus =  {
 async function writeToFile() {
   try {
     const jsonString = JSON.stringify(corpus);
-    await fsPromises.writeFile('corpus.json', jsonString);
+    await fsPromises.writeFile('./src/corpus.json', jsonString);
     console.log('Data has been written to corpus.json');
   } catch (error) {
     console.error('Error writing to file:', error);
