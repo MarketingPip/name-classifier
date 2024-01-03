@@ -265,6 +265,9 @@ let classifier = new Classifier();
 classifier.trainlist([...mergedMaleNames.map(name => normalizeString(name.toLowerCase()))], "male");
 classifier.trainlist([...finalFemaleNames.map(name => normalizeString(name.toLowerCase()))], "female");
 classifier.probabilities();
+
+let results = null;
+
 results = classifier.guess("Bob");
 console.log(results);
 
