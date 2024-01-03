@@ -260,7 +260,7 @@ Classifier = class {
 }
 }
 
-classifier = new Classifier();
+let classifier = new Classifier();
 
 classifier.trainlist([...mergedMaleNames.map(name => normalizeString(name.toLowerCase()))], "male");
 classifier.trainlist([...finalFemaleNames.map(name => normalizeString(name.toLowerCase()))], "female");
