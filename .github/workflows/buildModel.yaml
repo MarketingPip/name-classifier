@@ -27,6 +27,9 @@ jobs:
       - name: Run Merge Script
         run: node ./src/buildModel.js
 
+      - name: Run Merge Script
+        run: node ./src/classifier.js
+
       - name: Commit Changes
         run: |
           git config --local user.email "action@github.com"
