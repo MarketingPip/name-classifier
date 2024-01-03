@@ -1,8 +1,7 @@
-const { NlpManager } = require('node-nlp');
-const fs = require('fs').promises;
+import { NlpManager } from 'node-nlp';
+import { promises as fs } from 'fs';
 
 const manager = new NlpManager({ languages: ['en'] });
-
 
 (async () => {
   const nlp = manager;
