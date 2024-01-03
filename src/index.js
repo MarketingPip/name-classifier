@@ -6,7 +6,7 @@ import * as femaleNames from './femaleNames.json'
 import * as femaleNicknames from './femaleNicknames.json'
 
 // maleNames.js
-import * as from './maleNames.json'
+import * as maleNames from './maleNames.json'
 
 // maleNicknames.js
 import * as maleNicknames from './maleNicknames.json'
