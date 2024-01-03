@@ -26,3 +26,11 @@ jobs:
 
       - name: Run Merge Script
         run: node ./src/buildModel.js
+
+      - name: Commit Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add src/ dist/
+          git commit -m "Auto-commit changes after running merge script"
+          git push
