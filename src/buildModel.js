@@ -107,6 +107,7 @@ writeToFileAgain()
 
 
 let needsClassifier = (typeof Classifier === 'undefined')
+let Classifier = null;
 if (needsClassifier) {
 Classifier = class {
     constructor() {
@@ -258,9 +259,9 @@ Classifier = class {
     }
 }
 }
-if (typeof classifier == 'undefined') {
-    classifier = new Classifier();
-}
+
+    let classifier = new Classifier();
+
 classifier.trainlist([...mergedMaleNames.map(name => normalizeString(name.toLowerCase()))], "male");
 classifier.trainlist([...finalFemaleNames.map(name => normalizeString(name.toLowerCase()))], "female");
 classifier.probabilities();
