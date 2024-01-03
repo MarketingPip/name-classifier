@@ -30,14 +30,14 @@ const corpus =  {
   "locale": "en-US",
   "data": [
     {
-      "intent": "male"
+      "intent": "male",
       "utterances": [...mergedMaleNames],
       "answers": [
         "male"
       ]
     },
     {
-      "intent": "female"
+      "intent": "female",
       "utterances": [...finalFemaleNames],
       "answers": [
         "female"
