@@ -53,7 +53,44 @@ const corpus = {
   ]
 };
 
+function findTop10EndingLetters(words) {
+  // Create an object to store the frequency of each ending letter
+  const endingLetterFrequency = {};
 
+  // Iterate through each word in the array
+  words.forEach(word => {
+    // Get the last letter of the word
+    const lastLetter = word.slice(-1);
+
+    // Update the frequency in the object
+    endingLetterFrequency[lastLetter] = (endingLetterFrequency[lastLetter] || 0) + 1;
+  });
+
+  // Convert the object to an array of [letter, frequency] pairs
+  const endingLetterArray = Object.entries(endingLetterFrequency);
+
+  // Sort the array based on frequency in descending order
+  endingLetterArray.sort((a, b) => b[1] - a[1]);
+
+  // Slice the array to get the top 10 items
+  const top10EndingLetters = endingLetterArray.slice(0, 10);
+
+  // Convert the result back to an object
+  const result = Object.fromEntries(top10EndingLetters);
+
+  return result;
+}
+
+
+async function writeToFileAgain() {
+  try {
+    const jsonString = JSON.stringify({female:findTop10EndingLetters(finalFemaleNames), male:findTop10EndingLetters(mergedMaleNames)});
+    await fsPromises.writeFile('./src/topletters_corpus.json', jsonString);
+    console.log('Data has been written to corpus.json');
+  } catch (error) {
+    console.error('Error writing to file:', error);
+  }
+}
 
 async function writeToFile() {
   try {
@@ -66,3 +103,4 @@ async function writeToFile() {
 }
 
 writeToFile();
+writeToFileAgain()
