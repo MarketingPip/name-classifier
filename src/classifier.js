@@ -27,46 +27,46 @@ const manager = new NlpManager({ languages: ['en'] });
 
   // Process the input text
   let response = await nlp.process('en', "Jared");
-  console.log(response + "Expected male")
+  console.log(response)
 
   response = await nlp.process('en', "Ryan Joesph");
-  console.log(response + "Expected male") 
+  console.log(response) 
 
   response = await nlp.process('en', "Jessie Jackson");
-  console.log(response + "Expected male") 
+  console.log(response) 
 
   response = await nlp.process('en', "Homer");
-  console.log(response + "Expected male") 
+  console.log(response) 
 
 
   response = await nlp.process('en', "Robert");
-  console.log(response + "Expected male") 
+  console.log(response)
   
     response = await nlp.process('en', "Bob");
-  console.log(response + "Expected male") 
+  console.log(response) 
   
 
     response = await nlp.process('en', "Lorie Lynn");
-  console.log(response + "Expected female") 
+  console.log(response) 
 
     response = await nlp.process('en', "Hayley");
-  console.log(response + "Expected female") 
+  console.log(response) 
 
     response = await nlp.process('en', "Cassie");
-  console.log(response + "Expected female") 
+  console.log(response) 
 
 
     response = await nlp.process('en', "Bobbi");
-  console.log(response + "Expected female") 
+  console.log(response) 
 
   response = await nlp.process('en', "Roberta");
-  console.log(response + "Expected female") 
+  console.log(response) 
 
   response = await nlp.process('en', "Bobbi Brown");
-  console.log(response + "Expected female") 
+  console.log(response) 
   
       response = await nlp.process('en', "Lisa");
-  console.log(response + "Expected female") 
+  console.log(response) 
 
 
   
