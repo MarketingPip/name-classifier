@@ -10,7 +10,8 @@ import {
  import unidecode from 'unidecode'
 
 function normalizeString(inputString) {
-  return unidecode(inputString)
+  return inputString
+  //return unidecode(inputString)
 }
 
 import { promises as fsPromises } from 'fs';
