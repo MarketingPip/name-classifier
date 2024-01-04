@@ -14,7 +14,9 @@ function normalizeString(inputString) {
   const normalizedString = inputString.replace(/[^a-zA-Z]/g, '');
 
   // Optionally, you can use unidecode if needed
-   const finalString = unidecode(normalizedString);
+   const finalString = normalizedString;
+
+ //  const finalString = unidecode(normalizedString);
 
   return finalString;
 }
