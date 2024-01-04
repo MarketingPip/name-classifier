@@ -10,9 +10,15 @@ import {
  import unidecode from 'unidecode'
 
 function normalizeString(inputString) {
-  return inputString
-  //return unidecode(inputString)
+  // Remove whitespace and non-letter characters using a regular expression
+  const normalizedString = inputString.replace(/[^a-zA-Z]/g, '');
+
+  // Optionally, you can use unidecode if needed
+   const finalString = unidecode(normalizedString);
+
+  return finalString;
 }
+
 
 import { promises as fsPromises } from 'fs';
 
