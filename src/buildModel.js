@@ -81,7 +81,6 @@ function findTop10EndingLetters(words) {
   return result;
 }
 
-
 function removeDuplicatesFromBoth(data) {
   const combinedKeys = Object.keys(data["female"]).concat(Object.keys(data["male"]));
   const seenKeys = {};
@@ -98,7 +97,8 @@ function removeDuplicatesFromBoth(data) {
   return data;
 }
 
-
+const result = removeDuplicatesFromBoth(exampleData);
+console.log(result);
 
 
 function transformData(data) {
@@ -124,13 +124,13 @@ function transformData(data) {
 }
 
 
+const transformedResult = transformData({female:findTop10EndingLetters(finalFemaleNames), male:findTop10EndingLetters(mergedMaleNames)});
+
 async function writeToFileAgain() {
   try {
 
-    const womenNames = [...finalFemaleNames.map(name => normalizeString(name.toLowerCase()))]
-    const menNames = [...mergedMaleNames.map(name => normalizeString(name.toLowerCase()))]
-    const result = removeDuplicatesFromBoth(transformData({female:findTop10EndingLetters(womenNames), male:findTop10EndingLetters(menNames)}));
-    const jsonString = JSON.stringify(result);
+    
+    const jsonString = JSON.stringify(transformedResult);
     await fsPromises.writeFile('./src/topletters_corpus.json', jsonString);
     console.log('Data has been written to corpus.json');
   } catch (error) {
