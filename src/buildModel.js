@@ -128,7 +128,7 @@ async function writeToFileAgain() {
   try {
 
     const womenNames = [...finalFemaleNames.map(name => normalizeString(name.toLowerCase()))]
-    const menNames = [...mergedMaleNames.map(name => normalizeString(name.toLowerCase()))
+    const menNames = [...mergedMaleNames.map(name => normalizeString(name.toLowerCase()))]
     const result = removeDuplicatesFromBoth({female:findTop10EndingWords(womenNames), male:findTop10EndingsWords(menNames)});
     const jsonString = JSON.stringify(result);
     await fsPromises.writeFile('./src/topletters_corpus.json', jsonString);
