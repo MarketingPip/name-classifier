@@ -129,7 +129,7 @@ async function writeToFileAgain() {
 
     const womenNames = [...finalFemaleNames.map(name => normalizeString(name.toLowerCase()))]
     const menNames = [...mergedMaleNames.map(name => normalizeString(name.toLowerCase()))]
-    const result = removeDuplicatesFromBoth({female:findTop10EndingLetters(womenNames), male:findTop10EndingLetters(menNames)});
+    const result = removeDuplicatesFromBoth(transformData({female:findTop10EndingLetters(womenNames), male:findTop10EndingLetters(menNames)}));
     const jsonString = JSON.stringify(result);
     await fsPromises.writeFile('./src/topletters_corpus.json', jsonString);
     console.log('Data has been written to corpus.json');
