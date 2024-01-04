@@ -73,7 +73,7 @@ function findTop10EndingLetters(words) {
   endingLetterArray.sort((a, b) => b[1] - a[1]);
 
   // Slice the array to get the top 10 items
-  const top10EndingLetters = endingLetterArray.slice(0, 15);
+  const top10EndingLetters = endingLetterArray
 
   // Convert the result back to an object
   const result = Object.fromEntries(top10EndingLetters);
@@ -82,9 +82,52 @@ function findTop10EndingLetters(words) {
 }
 
 
+function removeDuplicatesFromBoth(data) {
+  const combinedKeys = Object.keys(data["female"]).concat(Object.keys(data["male"]));
+  const seenKeys = {};
+
+  combinedKeys.forEach((key) => {
+    if (seenKeys[key]) {
+      delete data["female"][key];
+      delete data["male"][key];
+    } else {
+      seenKeys[key] = true;
+    }
+  });
+
+  return data;
+}
+
+
+
+
+function transformData(data) {
+  const transformedData = {
+    "female": [],
+    "male": [],
+    "top_chars": {}
+  };
+
+  for (const gender in data) {
+    if (data.hasOwnProperty(gender)) {
+      const keys = Object.keys(data[gender]);
+
+      // Extract key names into arrays
+      transformedData[gender] = keys;
+
+      // Use the first item as the top item for the "top_chars" key (already have been sorted)
+      transformedData["top_chars"][gender] = keys[0];
+    }
+  }
+
+  return transformedData;
+}
+
+
 async function writeToFileAgain() {
   try {
-    const jsonString = JSON.stringify({female:findTop10EndingLetters(finalFemaleNames), male:findTop10EndingLetters(mergedMaleNames)});
+    const result = removeDuplicatesFromBoth({female:findTop10EndingLetters(finalFemaleNames), male:findTop10EndingLetters(mergedMaleNames)});
+    const jsonString = JSON.stringify(result);
     await fsPromises.writeFile('./src/topletters_corpus.json', jsonString);
     console.log('Data has been written to corpus.json');
   } catch (error) {
