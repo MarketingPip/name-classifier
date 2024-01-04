@@ -124,7 +124,7 @@ function transformData(data) {
 }
 
 
-const transformedResult = transformData({female:findTop10EndingLetters(finalFemaleNames), male:findTop10EndingLetters(mergedMaleNames)});
+const transformedResult = transformData({female:findTop10EndingLetters([...finalFemaleNames.map(name => normalizeString(name.toLowerCase()))]), male:findTop10EndingLetters([...mergedMaleNames.map(name => normalizeString(name.toLowerCase()))])});
 
 async function writeToFileAgain() {
   try {
