@@ -68,7 +68,7 @@ function findTop10EndingLetters(words) {
   words.forEach(word => {
     // Get the last letter of the word
     const lastLetter = word.slice(-2);
-
+console.log(word)
     // Update the frequency in the object
     endingLetterFrequency[lastLetter] = (endingLetterFrequency[lastLetter] || 0) + 1;
   });
