@@ -11,6 +11,8 @@ import {
 
 function normalizeString(inputString) {
   // Remove whitespace and non-letter characters using a regular expression
+  inputString = unidecode(inputString);
+  
   const normalizedString = inputString.replace(/[^a-zA-Z]/g, '');
 
   // Optionally, you can use unidecode if needed
