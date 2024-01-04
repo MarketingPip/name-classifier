@@ -66,11 +66,14 @@ function findTop10EndingLetters(words) {
 
   // Iterate through each word in the array
   words.forEach(word => {
-    // Get the last letter of the word
-    const lastLetter = word.slice(-2);
-console.log(word)
-    // Update the frequency in the object
-    endingLetterFrequency[lastLetter] = (endingLetterFrequency[lastLetter] || 0) + 1;
+    // Ignore words with less than 2 letters
+    if (word.length >= 2) {
+      // Get the last two letters of the word
+      const lastLetters = word.slice(-2);
+
+      // Update the frequency in the object
+      endingLetterFrequency[lastLetters] = (endingLetterFrequency[lastLetters] || 0) + 1;
+    }
   });
 
   // Convert the object to an array of [letter, frequency] pairs
@@ -87,6 +90,7 @@ console.log(word)
 
   return result;
 }
+
 
 function removeDuplicatesFromBoth(data) {
   const combinedKeys = Object.keys(data["female"]).concat(Object.keys(data["male"]));
