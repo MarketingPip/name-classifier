@@ -97,8 +97,7 @@ function removeDuplicatesFromBoth(data) {
   return data;
 }
 
-const result = removeDuplicatesFromBoth(exampleData);
-console.log(result);
+const result = removeDuplicatesFromBoth({female:findTop10EndingLetters([...finalFemaleNames.map(name => normalizeString(name.toLowerCase()))]), male:findTop10EndingLetters([...mergedMaleNames.map(name => normalizeString(name.toLowerCase()))])});
 
 
 function transformData(data) {
@@ -124,7 +123,7 @@ function transformData(data) {
 }
 
 
-const transformedResult = transformData({female:findTop10EndingLetters([...finalFemaleNames.map(name => normalizeString(name.toLowerCase()))]), male:findTop10EndingLetters([...mergedMaleNames.map(name => normalizeString(name.toLowerCase()))])});
+const transformedResult = transformData(result);
 
 async function writeToFileAgain() {
   try {
