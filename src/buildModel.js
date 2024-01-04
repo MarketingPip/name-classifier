@@ -16,9 +16,9 @@ function normalizeString(inputString) {
   const normalizedString = inputString.replace(/[^a-zA-Z]/g, '');
 
   // Optionally, you can use unidecode if needed
-   const finalString = normalizedString;
+ //  const finalString = normalizedString;
 
- //  const finalString = unidecode(normalizedString);
+   const finalString = unidecode(normalizedString);
 
   return finalString;
 }
@@ -87,7 +87,7 @@ function findTop10EndingLetters(words) {
   endingLetterArray.sort((a, b) => b[1] - a[1]);
 
   // Slice the array to get the top 10 items
-  const top10EndingLetters = endingLetterArray
+  const top10EndingLetters = endingLetterArray.slice(0, 100)
 
   // Convert the result back to an object
   const result = Object.fromEntries(top10EndingLetters);
