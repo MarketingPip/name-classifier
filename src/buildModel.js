@@ -394,7 +394,7 @@ function countItems(data, endLetterArrayLength) {
   return { female: femaleItems, male: maleItems };
 }
 
-let endLetterArrayLength = 1000; // Initial guess for the length
+let endLetterArrayLength = 10; // Initial guess for the length
 let maxFemaleItems = 0;
 let maxMaleItems = 0;
 
