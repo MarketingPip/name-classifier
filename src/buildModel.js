@@ -339,8 +339,8 @@ let classifier = new Classifier();
 
 classifier.trainlist([...mergedMaleNames.map(name => normalizeString(name.toLowerCase()))], "male");
 classifier.trainlist([...finalFemaleNames.map(name => normalizeString(name.toLowerCase()))], "female");
-classifer.trainlist([...unisexNames.map(name => normalizeString(name.toLowerCase()))], "unisex");
-classifer.trainlist(["hello", "just a test", "hmmm", "lol", "lolololol", "bonjour", "es que tu la", "github", "dog", "wooooof", "meow", "hmmm", "fuck you"], "unknown")
+classifier.trainlist([...unisexNames.map(name => normalizeString(name.toLowerCase()))], "unisex");
+classifier.trainlist(["hello", "just a test", "hmmm", "lol", "lolololol", "bonjour", "es que tu la", "github", "dog", "wooooof", "meow", "hmmm", "fuck you"], "unknown")
 classifier.probabilities();
 
 let results = null;
