@@ -389,8 +389,8 @@ function findTop10EndingLettersAgain(words, endLetterArrayLength) {
 
 
 function countItems(data, endLetterArrayLength) {
-  const femaleItems = new Set([...data.female.map(name => name.slice(-endLetterArrayLength))]).size;
-  const maleItems = new Set([...data.male.map(name => name.slice(-endLetterArrayLength))]).size;
+  const femaleItems = new Set([data.female.map(name => name.slice(-endLetterArrayLength))]).size;
+  const maleItems = new Set([data.male.map(name => name.slice(-endLetterArrayLength))]).size;
   return { female: femaleItems, male: maleItems };
 }
 
