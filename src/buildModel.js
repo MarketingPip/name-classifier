@@ -95,7 +95,7 @@ function findTop10EndingLetters(words) {
   endingLetterArray.sort((a, b) => b[1] - a[1]);
 
   // Slice the array to get the top 10 items
-  const top10EndingLetters = endingLetterArray.slice(0, 10)
+  const top10EndingLetters = endingLetterArray.slice(0, 15)
 
   // Convert the result back to an object
   const result = Object.fromEntries(top10EndingLetters);
