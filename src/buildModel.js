@@ -87,7 +87,7 @@ function findTop10EndingLetters(words) {
   endingLetterArray.sort((a, b) => b[1] - a[1]);
 
   // Slice the array to get the top 10 items
-  const top10EndingLetters = endingLetterArray.slice(0, 10)
+  const top10EndingLetters = endingLetterArray.slice(0, 1)
 
   // Convert the result back to an object
   const result = Object.fromEntries(top10EndingLetters);
@@ -394,7 +394,7 @@ function countItems(data, endLetterArrayLength) {
   return { female: femaleItems, male: maleItems };
 }
 
-let endLetterArrayLength = 10; // Initial guess for the length
+let endLetterArrayLength = 1000; // Initial guess for the length
 let maxFemaleItems = 0;
 let maxMaleItems = 0;
 
