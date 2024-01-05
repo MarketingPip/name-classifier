@@ -21,7 +21,7 @@ function normalizeString(inputString) {
 
    const finalString = unidecode(normalizedString);
 
-  return "gender: " + finalString;
+  return finalString;
 }
 
 
