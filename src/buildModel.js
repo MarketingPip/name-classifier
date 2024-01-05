@@ -105,13 +105,18 @@ function findTop10EndingLetters(words) {
 
 
 function removeDuplicatesFromBoth(data) {
-  const combinedKeys = Object.keys(data["female"]).concat(Object.keys(data["male"]));
+  const femaleKeys = Object.keys(data["female"]);
+  const maleKeys = Object.keys(data["male"]);
+  const unisexKeys = Object.keys(data["unisex"]);
+
+  const combinedKeys = femaleKeys.concat(maleKeys).concat(unisexKeys);
   const seenKeys = {};
 
   combinedKeys.forEach((key) => {
     if (seenKeys[key]) {
       delete data["female"][key];
       delete data["male"][key];
+      delete data["unisex"][key];
     } else {
       seenKeys[key] = true;
     }
@@ -120,7 +125,7 @@ function removeDuplicatesFromBoth(data) {
   return data;
 }
 
-const result = removeDuplicatesFromBoth({female:findTop10EndingLetters([...finalFemaleNames.map(name => normalizeString(name.toLowerCase()))]), male:findTop10EndingLetters([...mergedMaleNames.map(name => normalizeString(name.toLowerCase()))])});
+const result = removeDuplicatesFromBoth({female:findTop10EndingLetters([...finalFemaleNames.map(name => normalizeString(name.toLowerCase()))]), male:findTop10EndingLetters([...mergedMaleNames.map(name => normalizeString(name.toLowerCase()))]), unisex:male:findTop10EndingLetters([...unisexNames.map(name => normalizeString(name.toLowerCase()))])});
 
 
 function transformData(data) {
