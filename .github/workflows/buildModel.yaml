@@ -39,7 +39,8 @@ jobs:
         run: npm install unidecode
       - name: Run Merge Script
         run: node ./src/buildModel.js
-
+      - name: Run Merge Script
+        run: node ./src/classifier.js
 
 
       - name: Commit Changes
