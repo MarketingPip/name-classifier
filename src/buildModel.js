@@ -407,7 +407,7 @@ while (endLetterArrayLength > 0) {
 
   const counts = countItems(transformData(results), endLetterArrayLength);
 
-  if (counts.female > maxFemaleItems && counts.male > maxMaleItems) {
+  if (counts.female > maxFemaleItems || counts.male > maxMaleItems) {
     maxFemaleItems = counts.female;
     maxMaleItems = counts.male;
   }
