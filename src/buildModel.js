@@ -127,20 +127,13 @@ const unisex = [].concat(findTop10EndingLetters([...unisexNames.map(name => norm
 
 
 
-const filteredUnisex = unisex.filter(value => {
-  // Check if the value is not present in either female or male arrays
-  return !(
-    result.female.includes(value) ||
-    result.male.includes(value)
-  );
-});
+
 
 
 function transformData(data) {
   const transformedData = {
     "female": [],
     "male": [],
-     "unisex": filteredUnisex,
     "top_chars": {}
   };
 
@@ -165,6 +158,17 @@ const transformedResult = transformData(result);
 async function writeToFileAgain() {
   try {
 
+ 
+    
+    const filteredUnisex = unisex.filter(value => {
+  // Check if the value is not present in either female or male arrays
+  return !(
+    transformedResult.female.includes(value) ||
+    transformedResult.male.includes(value)
+  );
+});
+
+    transformedResult.unisex = filteredUnisex
     
     const jsonString = JSON.stringify(transformedResult);
     await fsPromises.writeFile('./src/topletters_corpus.json', jsonString);
