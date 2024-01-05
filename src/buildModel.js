@@ -410,9 +410,6 @@ while (endLetterArrayLength > 0) {
   if (counts.female > maxFemaleItems && counts.male > maxMaleItems) {
     maxFemaleItems = counts.female;
     maxMaleItems = counts.male;
-  } else {
-    // Break the loop if no improvement in counts
-    break;
   }
 
   endLetterArrayLength--; // Try with a smaller length
