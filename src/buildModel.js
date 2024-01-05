@@ -351,3 +351,70 @@ console.log(results);
 
 results = classifier.guess("Hakifred");
 console.log(results);
+
+
+
+function findTop10EndingLettersAgain(words, endLetterArrayLength) {
+  // Create an object to store the frequency of each ending letter
+  const endingLetterFrequency = {};
+
+  // Iterate through each word in the array
+  words.forEach(word => {
+    // Ignore words with less than the specified length
+    if (word.length >= endLetterArrayLength) {
+      // Get the last 'endLetterArrayLength' letters of the word
+      const lastLetters = word.slice(-endLetterArrayLength);
+
+      // Update the frequency in the object
+      endingLetterFrequency[lastLetters] = (endingLetterFrequency[lastLetters] || 0) + 1;
+    }
+  });
+
+  // Convert the object to an array of [letter, frequency] pairs
+  const endingLetterArray = Object.entries(endingLetterFrequency);
+
+  // Sort the array based on frequency in descending order
+  endingLetterArray.sort((a, b) => b[1] - a[1]);
+
+  // Slice the array to get the top X (endLetterArrayLength - 1 each time here)
+  const topEndingLetters = endingLetterArray.slice(0, endLetterArrayLength - 1);
+
+  // Convert the result back to an object
+  const result = Object.fromEntries(topEndingLetters);
+
+  return result;
+}
+
+
+
+function countItems(data, endLetterArrayLength) {
+  const femaleItems = new Set([...data.female.map(name => name.slice(-endLetterArrayLength))]).size;
+  const maleItems = new Set([...data.male.map(name => name.slice(-endLetterArrayLength))]).size;
+  return { female: femaleItems, male: maleItems };
+}
+
+let endLetterArrayLength = 1000; // Initial guess for the length
+let maxFemaleItems = 0;
+let maxMaleItems = 0;
+
+while (endLetterArrayLength > 0) {
+  const results = removeDuplicatesFromBoth({
+    female: findTop10EndingLettersAgain([...finalFemaleNames.map(name => normalizeString(name.toLowerCase()))], endLetterArrayLength),
+    male: findTop10EndingLettersAgain([...mergedMaleNames.map(name => normalizeString(name.toLowerCase()))], endLetterArrayLength)
+  });
+
+  const counts = countItems(results, endLetterArrayLength);
+
+  if (counts.female > maxFemaleItems || counts.male > maxMaleItems) {
+    maxFemaleItems = counts.female;
+    maxMaleItems = counts.male;
+  } else {
+    // Break the loop if no improvement in counts
+    break;
+  }
+
+  endLetterArrayLength--; // Try with a smaller length
+}
+
+console.log(`Max Female Items: ${maxFemaleItems}, Max Male Items: ${maxMaleItems}, Best Length: ${endLetterArrayLength + 1}`);
+
