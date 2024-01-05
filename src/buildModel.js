@@ -21,7 +21,7 @@ function normalizeString(inputString) {
 
    const finalString = unidecode(normalizedString);
 
-  return finalString;
+  return "gender: " + finalString;
 }
 
 
@@ -68,14 +68,7 @@ const corpus = {
       "answers": [
         "unisex"
       ]
-    },
-    {
-      "intent": "unknown",
-      "utterances": ["hello", "just a test", "hmmm", "lol", "lolololol", "bonjour", "es que tu la", "github", "dog", "wooooof", "meow", "hmmm", "fuck you"],
-      "answers": [
-        "unknown"
-      ]
-    },        
+    }    
   ]
 };
 
