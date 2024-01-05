@@ -123,7 +123,8 @@ function removeDuplicatesFromBoth(data) {
 const result = removeDuplicatesFromBoth({female:findTop10EndingLetters([...finalFemaleNames.map(name => normalizeString(name.toLowerCase()))]), male:findTop10EndingLetters([...mergedMaleNames.map(name => normalizeString(name.toLowerCase()))])});
 
 
-const unisex = [].concat(findTop10EndingLetters([...unisexNames.map(name => normalizeString(name.toLowerCase()))].map(obj => Object.keys(obj))));
+const unisex = Object.keys(top10EndingLetters([...unisexNames.map(name => normalizeString(name.toLowerCase()))]));
+
 
 
 
