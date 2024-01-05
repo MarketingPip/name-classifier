@@ -358,17 +358,18 @@ function findTop10EndingLettersAgain(words, endLetterArrayLength) {
   // Create an object to store the frequency of each ending letter
   const endingLetterFrequency = {};
 
-  // Iterate through each word in the array
+   // Iterate through each word in the array
   words.forEach(word => {
-    // Ignore words with less than the specified length
-    if (word.length >= endLetterArrayLength) {
-      // Get the last 'endLetterArrayLength' letters of the word
-      const lastLetters = word.slice(-endLetterArrayLength);
+    // Ignore words with less than 2 letters
+    if (word.length >= 2) {
+      // Get the last two letters of the word
+      const lastLetters = word.slice(-2);
 
       // Update the frequency in the object
       endingLetterFrequency[lastLetters] = (endingLetterFrequency[lastLetters] || 0) + 1;
     }
   });
+
 
   // Convert the object to an array of [letter, frequency] pairs
   const endingLetterArray = Object.entries(endingLetterFrequency);
@@ -388,8 +389,8 @@ function findTop10EndingLettersAgain(words, endLetterArrayLength) {
 
 
 function countItems(data, endLetterArrayLength) {
-  const femaleItems = new Set([data.female.map(name => name.slice(-endLetterArrayLength))]).size;
-  const maleItems = new Set([data.male.map(name => name.slice(-endLetterArrayLength))]).size;
+  const femaleItems = new Set([...data.female.map(name => name.slice(-endLetterArrayLength))]).size;
+  const maleItems = new Set([...data.male.map(name => name.slice(-endLetterArrayLength))]).size;
   return { female: femaleItems, male: maleItems };
 }
 
