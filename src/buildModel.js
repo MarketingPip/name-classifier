@@ -380,6 +380,10 @@ console.log(results);
 results = classifier.guess("Hakifred");
 console.log(results);
 
-
+//
 results = classifier.guess("Taylor");
 console.log(results);
+
+results = classifier.guess("Dayan");
+console.log(results);
+
