@@ -1,7 +1,7 @@
 import { NlpManager } from 'node-nlp';
 import { promises as fs } from 'fs';
 
-const manager = new NlpManager({ languages: ['en', 'es', 'fr'] });
+const manager = new NlpManager({ languages: ['en'] });
 
 (async () => {
   const nlp = manager;
@@ -26,46 +26,51 @@ const manager = new NlpManager({ languages: ['en', 'es', 'fr'] });
   //await fs.writeFile('nlpModel.json', nlpModel, 'utf8');
 
   // Process the input text
-  let response = await nlp.process('en', "Jared");
+  let response = await nlp.process('en', "jared");
   console.log(response)
 
-  response = await nlp.process('en', "Ryan Joesph");
+  response = await nlp.process('en', "ryan joesph");
   console.log(response) 
 
-  response = await nlp.process('en', "Jessie Jackson");
+  response = await nlp.process('en', "jessie jackson");
   console.log(response) 
 
-  response = await nlp.process('en', "Homer");
+  response = await nlp.process('en', "homer");
   console.log(response) 
 
 
-  response = await nlp.process('en', "Robert");
+  response = await nlp.process('en', "robert");
   console.log(response)
   
-    response = await nlp.process('en', "Bob");
+    response = await nlp.process('en', "bob");
   console.log(response) 
   
 
-    response = await nlp.process('en', "Lorie Lynn");
+    response = await nlp.process('en', "lorie lynn");
   console.log(response) 
 
-    response = await nlp.process('en', "Hayley");
+    response = await nlp.process('en', "hayley");
   console.log(response) 
 
-    response = await nlp.process('en', "Cassie");
+    response = await nlp.process('en', "cassie");
   console.log(response) 
 
 
-    response = await nlp.process('en', "Bobbi");
+    response = await nlp.process('en', "bobbi");
   console.log(response) 
 
-  response = await nlp.process('en', "Roberta");
+  response = await nlp.process('en', "roberta");
   console.log(response) 
 
-  response = await nlp.process('en', "Bobbi Brown");
+  response = await nlp.process('en', "bobbi brown");
   console.log(response) 
   
-      response = await nlp.process('en', "Lisa");
+      response = await nlp.process('en', "lisa");
+  console.log(response) 
+
+
+
+       response = await nlp.process('en', "taylor");
   console.log(response) 
 
 
