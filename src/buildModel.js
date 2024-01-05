@@ -95,7 +95,7 @@ function findTop10EndingLetters(words) {
   endingLetterArray.sort((a, b) => b[1] - a[1]);
 
   // Slice the array to get the top 10 items
-  const top10EndingLetters = endingLetterArray.slice(0, 10)
+  const top10EndingLetters = endingLetterArray.slice(0, 15)
 
   // Convert the result back to an object
   const result = Object.fromEntries(top10EndingLetters);
@@ -105,18 +105,13 @@ function findTop10EndingLetters(words) {
 
 
 function removeDuplicatesFromBoth(data) {
-  const femaleKeys = Object.keys(data["female"]);
-  const maleKeys = Object.keys(data["male"]);
-  const unisexKeys = Object.keys(data["unisex"]);
-
-  const combinedKeys = femaleKeys.concat(maleKeys).concat(unisexKeys);
+  const combinedKeys = Object.keys(data["female"]).concat(Object.keys(data["male"]));
   const seenKeys = {};
 
   combinedKeys.forEach((key) => {
     if (seenKeys[key]) {
       delete data["female"][key];
       delete data["male"][key];
-      delete data["unisex"][key];
     } else {
       seenKeys[key] = true;
     }
@@ -125,13 +120,25 @@ function removeDuplicatesFromBoth(data) {
   return data;
 }
 
-const result = removeDuplicatesFromBoth({female:findTop10EndingLetters([...finalFemaleNames.map(name => normalizeString(name.toLowerCase()))]), male:findTop10EndingLetters([...mergedMaleNames.map(name => normalizeString(name.toLowerCase()))]), unisex:findTop10EndingLetters([...unisexNames.map(name => normalizeString(name.toLowerCase()))])});
+const result = removeDuplicatesFromBoth({female:findTop10EndingLetters([...finalFemaleNames.map(name => normalizeString(name.toLowerCase()))]), male:findTop10EndingLetters([...mergedMaleNames.map(name => normalizeString(name.toLowerCase()))])});
+
+
+const unisex = findTop10EndingLetters([...unisexNames.map(name => normalizeString(name.toLowerCase()))])
+
+const filteredUnisex = unisex.filter(value => {
+  // Check if the value is not present in either female or male arrays
+  return !(
+    result.female.includes(value) ||
+    result.male.includes(value)
+  );
+});
 
 
 function transformData(data) {
   const transformedData = {
     "female": [],
     "male": [],
+     "unisex": filteredUnisex,
     "top_chars": {}
   };
 
