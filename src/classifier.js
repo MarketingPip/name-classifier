@@ -70,11 +70,14 @@ const manager = new NlpManager({ languages: ['en'] });
 
 
 
-       response = await nlp.process('en', "taylor");
-  console.log(response) 
-
 
   
+       response = await nlp.process('en', "taylor");
+  
+
+
+       response = await nlp.process('en', "Dayan");
+console.log(response)   
   if (response.intent == 'None') {
    // console.log('NO_ANSWER');
   } else {
