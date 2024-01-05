@@ -125,7 +125,7 @@ function removeDuplicatesFromBoth(data) {
   return data;
 }
 
-const result = removeDuplicatesFromBoth({female:findTop10EndingLetters([...finalFemaleNames.map(name => normalizeString(name.toLowerCase()))]), male:findTop10EndingLetters([...mergedMaleNames.map(name => normalizeString(name.toLowerCase()))]), unisex:male:findTop10EndingLetters([...unisexNames.map(name => normalizeString(name.toLowerCase()))])});
+const result = removeDuplicatesFromBoth({female:findTop10EndingLetters([...finalFemaleNames.map(name => normalizeString(name.toLowerCase()))]), male:findTop10EndingLetters([...mergedMaleNames.map(name => normalizeString(name.toLowerCase()))]), unisex:findTop10EndingLetters([...unisexNames.map(name => normalizeString(name.toLowerCase()))])});
 
 
 function transformData(data) {
