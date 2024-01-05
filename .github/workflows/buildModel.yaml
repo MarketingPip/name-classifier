@@ -38,7 +38,7 @@ jobs:
       - name: Install dependenciess     
         run: npm install unidecode
       - name: Run Merge Script
-        run: node ./src/buildModel.js
+        run: node ./src/classifier.js
 
 
 
