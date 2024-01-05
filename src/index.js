@@ -10,10 +10,14 @@ import maleNames from './maleNames.json' assert { type: "json"};
 // maleNicknames.js
 import maleNicknames from './maleNicknames.json' assert { type: "json"};
 
+// maleNicknames.js
+import unisexNames from './unisexNicknames.json' assert { type: "json"};
+
 // Exporting all the data
 export {
   femaleNames,
   femaleNicknames,
   maleNames,
   maleNicknames,
+  unisexNames
 };
