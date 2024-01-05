@@ -4,6 +4,7 @@ import {
   femaleNicknames,
   maleNames,
   maleNicknames,
+  unisexNames
 } from './index.js';
 
 //import unorm from 'unorm';
@@ -61,6 +62,20 @@ const corpus = {
         "female"
       ]
     },    
+    {
+      "intent": "unisex",
+      "utterances": [...unisexNames.map(name => normalizeString(name.toLowerCase()))],
+      "answers": [
+        "unisex"
+      ]
+    },
+    {
+      "intent": "unknown",
+      "utterances": ["hello", "just a test", "hmmm", "lol", "lolololol", "bonjour", "es que tu la", "github", "dog", "wooooof", "meow", "hmmm", "fuck you"],
+      "answers": [
+        "unknown"
+      ]
+    },        
   ]
 };
 
@@ -324,6 +339,8 @@ let classifier = new Classifier();
 
 classifier.trainlist([...mergedMaleNames.map(name => normalizeString(name.toLowerCase()))], "male");
 classifier.trainlist([...finalFemaleNames.map(name => normalizeString(name.toLowerCase()))], "female");
+classifer.trainlist([...unisexNames.map(name => normalizeString(name.toLowerCase()))], "unisex");
+classifer.trainlist(["hello", "just a test", "hmmm", "lol", "lolololol", "bonjour", "es que tu la", "github", "dog", "wooooof", "meow", "hmmm", "fuck you"], "unknown")
 classifier.probabilities();
 
 let results = null;
