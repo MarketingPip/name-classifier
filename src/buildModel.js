@@ -404,6 +404,7 @@ while (endLetterArrayLength > 0) {
     male: findTop10EndingLettersAgain([...mergedMaleNames.map(name => normalizeString(name.toLowerCase()))], endLetterArrayLength)
   });
 
+  console.log(results)
   const counts = countItems(results, endLetterArrayLength);
 
   if (counts.female > maxFemaleItems || counts.male > maxMaleItems) {
