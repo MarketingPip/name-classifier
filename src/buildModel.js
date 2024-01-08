@@ -173,7 +173,7 @@ async function writeToFileAgain() {
 
     transformedResult.unisex = filteredUnisex
     
-    const jsonString = jsonpack.pack(JSON.stringify(transformedResult));
+    const jsonString = JSON.stringify(transformedResult);
     await fsPromises.writeFile('./src/topletters_corpus.json', jsonString);
     console.log('Data has been written to corpus.json');
   } catch (error) {
@@ -183,7 +183,7 @@ async function writeToFileAgain() {
 
 async function writeToFile() {
   try {
-    const jsonString = JSON.stringify(corpus);
+    const jsonString = jsonpack.pack(JSON.stringify(corpus));
     await fsPromises.writeFile('./src/corpus.json', jsonString);
     console.log('Data has been written to corpus.json');
   } catch (error) {
