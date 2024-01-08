@@ -33,7 +33,7 @@ jobs:
       - name: Install dependenciess     
         run: npm install node-nlp 
       - name: Install dependenciess     
-        run: npm i jsonpack 
+        run: npm i compress-json 
       - name: Install dependenciess     
         run: npm install unidecode
       - name: Run Merge Script
