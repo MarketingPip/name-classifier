@@ -7,7 +7,9 @@ import {
   unisexNames
 } from './index.js';
 
-import { compress } from 'lz-string'
+import LZString from 'lz-string'
+
+const {compress} = LZString
 //import unorm from 'unorm';
  import unidecode from 'unidecode'
 
