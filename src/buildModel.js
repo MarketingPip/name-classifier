@@ -7,6 +7,8 @@ import {
   unisexNames
 } from './index.js';
 
+import jsonpack from "jsonpack"
+
 //import unorm from 'unorm';
  import unidecode from 'unidecode'
 
@@ -171,7 +173,7 @@ async function writeToFileAgain() {
 
     transformedResult.unisex = filteredUnisex
     
-    const jsonString = JSON.stringify(transformedResult);
+    const jsonString = jsonpack.pack(JSON.stringify(transformedResult));
     await fsPromises.writeFile('./src/topletters_corpus.json', jsonString);
     console.log('Data has been written to corpus.json');
   } catch (error) {
