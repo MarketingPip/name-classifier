@@ -184,7 +184,7 @@ async function writeToFileAgain() {
 async function writeToFile() {
   try {
     const jsonString = jsonpack.pack(JSON.stringify(corpus));
-    await fsPromises.writeFile('./src/corpus.json', jsonString);
+    await fsPromises.writeFile('./src/corpus.txt', jsonString);
     console.log('Data has been written to corpus.json');
   } catch (error) {
     console.error('Error writing to file:', error);
