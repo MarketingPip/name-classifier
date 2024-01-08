@@ -7,7 +7,7 @@ import {
   unisexNames
 } from './index.js';
 
-import { compress} from 'compress-json'
+import { compress } from 'lz-string'
 //import unorm from 'unorm';
  import unidecode from 'unidecode'
 
@@ -182,8 +182,8 @@ async function writeToFileAgain() {
 
 async function writeToFile() {
   try {
-    const jsonString = JSON.stringify(compress(corpus));
-    await fsPromises.writeFile('./src/corpus.json', jsonString);
+    const jsonString = compress(JSON.stringify(corpus));
+    await fsPromises.writeFile('./src/corpus.txt', jsonString);
     console.log('Data has been written to corpus.json');
   } catch (error) {
     console.error('Error writing to file:', error);
