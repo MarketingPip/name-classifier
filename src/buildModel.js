@@ -7,7 +7,7 @@ import {
   unisexNames
 } from './index.js';
 
-import jsonpack from "jsonpack"
+import jsonpack from 'jsonpack'
 
 //import unorm from 'unorm';
  import unidecode from 'unidecode'
