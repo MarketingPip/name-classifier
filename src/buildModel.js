@@ -184,7 +184,7 @@ async function writeToFileAgain() {
 
 async function writeToFile() {
   try {
-    const jsonString = compress(JSON.stringify(corpus));
+    const jsonString = compress(JSON.stringify(corpus)).trim();
     await fsPromises.writeFile('./src/corpus.txt', jsonString);
     console.log('Data has been written to corpus.json');
   } catch (error) {
