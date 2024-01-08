@@ -36,6 +36,8 @@ jobs:
       - name: Install dependenciess     
         run: npm install node-nlp 
       - name: Install dependenciess     
+        run: npm install jsonpack 
+      - name: Install dependenciess     
         run: npm install unidecode
       - name: Run Merge Script
         run: node ./src/buildModel.js
