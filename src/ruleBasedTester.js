@@ -1,4 +1,8 @@
  import unidecode from "https://esm.sh/unidecode"
+
+import nameCorpus from 'https://cdn.jsdelivr.net/gh/MarketingPip/name-classifier@master/src/corpus.json' assert { type: "json"};
+
+
 const exampleData = {
   "female": {"na": 2602, "ia": 1562, "ne": 1060, "ta": 987, "la": 959, "ra": 933, "ah": 860, "da": 770, "ka": 728, "ie": 501, "ja": 476, "sa": 433, "ha": 364, "ma": 344, "en": 339},
   "male": {"an": 1878, "on": 1227, "ng": 1151, "us": 1053, "io": 1014, "in": 1005, "er": 969, "ar": 786, "as": 742, "el": 641, "is": 627, "no": 617, "ur": 552, "en": 540, "ir": 484}
@@ -302,6 +306,17 @@ function normalizeString(inputString) {
   return finalString.toLowerCase();
 }
 
+
+function isNameInList(item) {
+     const foundCategory = nameCorpus.data.find(entry =>
+        entry.utterances.includes(item)
+    );
+
+    return foundCategory ? foundCategory.intent : null;
+}
+
+
+
 function genderChecker(input){
   // Example usage
 
@@ -340,6 +355,17 @@ input = removeSuffixFromString(input);
  input = normalizeString(input) 
 // console.log(input)
   
+  
+
+const isInCategories = isNameInList(input);
+
+if(isInCategories){
+ const titleCaseIsInCategories = isInCategories.charAt(0).toUpperCase() + isInCategories.slice(1);
+ return setResults(name, titleCaseIsInCategories);
+}
+
+  
+  
  result = findGenderByEndCharacters(input) 
   
   
@@ -348,5 +374,5 @@ return setResults(name, result)
 
 
 
-console.log(genderChecker("Dr. Donovan Dean"))
+console.log(genderChecker("Sir. Alexandra"))
 ////////
