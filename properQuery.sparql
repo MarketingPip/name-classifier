@@ -1,0 +1,8 @@
+SELECT ?familyNameLabel ?familyName
+WHERE {
+  ?familyName wdt:P31 wd:Q3409032 .
+  ?familyName rdfs:label ?familyNameLabel .
+  FILTER(LANG(?familyNameLabel) = "en")
+}
+
+LIMIT 10000
