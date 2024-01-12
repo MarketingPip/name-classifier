@@ -1,8 +1,16 @@
-SELECT ?familyNameLabel ?familyName
+SELECT DISTINCT ?label
 WHERE {
-  ?familyName wdt:P31 wd:Q3409032 .
-  ?familyName rdfs:label ?familyNameLabel .
-  FILTER(LANG(?familyNameLabel) = "en")
-}
+  ?item wdt:P31 wd:Q3409032 ;            # This filters items to only humans
+        rdfs:label ?label .        # Retrieve the label
+  
+  FILTER(LANG(?label) = "en") .     # Filter labels in English
 
-LIMIT 10000
+  OPTIONAL {
+    ?item wdt:P31 [] .           # Replace P1234 with your desired property ID
+    BIND(1 AS ?property) .
+  }
+}
+GROUP BY ?item ?label
+HAVING (COUNT(?property) <= 1)
+ORDER BY ASC(COUNT(?property))
+LIMIT 20000
