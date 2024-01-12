@@ -241,6 +241,11 @@ function processText(text){
 
 // Function to remove suffix from string
 function removeSuffixFromString(inputString) {
+  
+  if(inputString.toLowerCase() === "dean"){
+    return inputString
+  }
+  
   const suffixRegex = new RegExp(`^(${suffixes.concat(militaryTitles).join('|')})(\\.|\\s*)`, 'i');
   
   
@@ -353,7 +358,7 @@ input = removeSuffixFromString(input);
  input = processText(input) 
   
  input = normalizeString(input) 
-// console.log(input)
+console.log(input)
   
   
 
@@ -374,5 +379,5 @@ return setResults(name, result)
 
 
 
-console.log(genderChecker("Sir. Alexandra"))
+console.log(genderChecker("Cadet. Colton Hopper"))
 ////////
