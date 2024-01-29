@@ -40,7 +40,8 @@ jobs:
         run: node ./src/buildModel.js
       - name: Run Merge Script
         run: node ./src/classifier.js
-
+      - name: Run Merge Script
+        run: node ./src/suffixFinder.js
 
       - name: Commit Changes
         run: |
