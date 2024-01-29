@@ -9,6 +9,28 @@ import {
 
 import { promises as fsPromises } from 'fs';
 
+
+
+//import unorm from 'unorm';
+ import unidecode from 'unidecode'
+
+function normalizeString(inputString) {
+  // Remove whitespace and non-letter characters using a regular expression
+  inputString = unidecode(inputString);
+  
+  const normalizedString = inputString.replace(/[^a-zA-Z]/g, '');
+
+  // Optionally, you can use unidecode if needed
+ //  const finalString = normalizedString;
+
+   const finalString = unidecode(normalizedString);
+
+  return finalString;
+}
+
+
+
+
 function findCommonSuffixes(words) {
   // Create an object to store the frequency of each suffix
   const suffixFrequency = {};
@@ -48,7 +70,7 @@ function findCommonSuffixes(words) {
 
 
 // Example usage:
-const words = [...maleNames];
+const words = [...maleNames.map(name => normalizeString(name.toLowerCase()))],
 const commonSuffixes = findCommonSuffixes(words);
 
 console.log(commonSuffixes);
