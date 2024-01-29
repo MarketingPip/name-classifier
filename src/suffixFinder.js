@@ -7,7 +7,7 @@ import {
   unisexNames
 } from './index.js';
 
-import { promises as fs } from 'fs';
+import { promises as fsPromises } from 'fs';
 
 function findCommonSuffixes(words) {
   // Create an object to store the frequency of each suffix
