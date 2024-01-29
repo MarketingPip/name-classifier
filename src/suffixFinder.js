@@ -16,7 +16,7 @@ function findCommonSuffixes(words) {
   // Helper function to get all valid suffixes of a word
   function getSuffixes(word) {
     const suffixes = [];
-    for (let i = 1; i < word.length; i++) {
+    for (let i = 2; i <= word.length; i++) {
       suffixes.push(word.slice(-i));
     }
     return suffixes;
@@ -35,7 +35,7 @@ function findCommonSuffixes(words) {
 
   // Convert the object to an array of {suffix, frequency} pairs
   const suffixArray = Object.entries(suffixFrequency)
-    .filter(([suffix, frequency]) => frequency > 1) // Exclude single occurrences
+    .filter(([suffix, frequency]) => frequency > 1 && suffix.length > 1) // Exclude single occurrences and length 1 suffixes
     .map(([suffix, frequency]) => ({ suffix, frequency }));
 
   // Sort the array by frequency in descending order
@@ -43,6 +43,7 @@ function findCommonSuffixes(words) {
 
   return suffixArray;
 }
+
 
 
 
