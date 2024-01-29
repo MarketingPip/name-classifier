@@ -1,3 +1,13 @@
+// index.js
+import {
+  femaleNames,
+  femaleNicknames,
+  maleNames,
+  maleNicknames,
+  unisexNames
+} from './index.js';
+
+
 function findCommonSuffixes(words) {
   // Create an object to store the frequency of each suffix
   const suffixFrequency = {};
@@ -32,7 +42,7 @@ function findCommonSuffixes(words) {
 }
 
 // Example usage:
-const words = ['apple', 'pineapple', 'banana', 'grape'];
+const words = [...maleNames];
 const commonSuffixes = findCommonSuffixes(words);
 
 console.log(commonSuffixes);
