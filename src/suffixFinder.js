@@ -70,7 +70,7 @@ function findCommonSuffixes(words) {
 
 
 // Example usage:
-const words = [...maleNames.map(name => normalizeString(name.toLowerCase()))],
+const words = [...maleNames.map(name => normalizeString(name.toLowerCase()))]
 const commonSuffixes = findCommonSuffixes(words);
 
 console.log(commonSuffixes);
