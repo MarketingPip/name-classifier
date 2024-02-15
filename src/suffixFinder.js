@@ -73,13 +73,54 @@ function findCommonSuffixes(words) {
 const words = [...femaleNames.map(name => normalizeString(name.toLowerCase()))]
 const commonSuffixes = findCommonSuffixes(words);
 
+
+function findCommonPrefixes(words) {
+  // Create an object to store the frequency of each prefix
+  const prefixFrequency = {};
+
+  // Helper function to get all valid prefixes of a word
+  function getPrefixes(word) {
+    const prefixes = [];
+    for (let i = 1; i <= word.length - 1; i++) {
+      prefixes.push(word.slice(0, i));
+    }
+    return prefixes;
+  }
+
+  // Iterate through each word in the array
+  words.forEach(word => {
+    // Get all valid prefixes of the current word
+    const prefixes = getPrefixes(word);
+
+    // Update the frequency of each prefix in the object
+    prefixes.forEach(prefix => {
+      prefixFrequency[prefix] = (prefixFrequency[prefix] || 0) + 1;
+    });
+  });
+
+  // Convert the object to an array of {prefix, frequency} pairs
+  const prefixArray = Object.entries(prefixFrequency)
+    .filter(([prefix, frequency]) => frequency > 1 && prefix.length > 1) // Exclude single occurrences and length 1 prefixes
+    .map(([prefix, frequency]) => ({ prefix, frequency }));
+
+  // Sort the array by frequency in descending order
+  prefixArray.sort((a, b) => b.frequency - a.frequency);
+
+  return prefixArray;
+}
+
+
+const commonPrefixes = findCommonPrefixes(words);
+
 console.log(commonSuffixes);
 
 
 async function writeToFile() {
   try {
-    const jsonString = JSON.stringify(commonSuffixes).trim()
+    let jsonString = JSON.stringify(commonSuffixes).trim()
     await fsPromises.writeFile('./src/commonFemaleSuffixes.json', jsonString);
+    jsonString = JSON.stringify(findCommonPrefixes).trim()
+    await fsPromises.writeFile('./src/commonFemalePrefixes.json', jsonString);	  
     console.log('Data has been written to corpus.json');
   } catch (error) {
     console.error('Error writing to file:', error);
