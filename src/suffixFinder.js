@@ -112,15 +112,15 @@ function findCommonPrefixes(words) {
 
 const commonPrefixes = findCommonPrefixes(words);
 
-console.log(commonSuffixes);
+//console.log(commonSuffixes);
 
 
 async function writeToFile() {
   try {
-    let jsonString = JSON.stringify(commonSuffixes).trim()
+    const jsonString = JSON.stringify(commonSuffixes).trim()
     await fsPromises.writeFile('./src/commonFemaleSuffixes.json', jsonString);
-    jsonString = JSON.stringify(findCommonPrefixes).trim()
-    await fsPromises.writeFile('./src/commonFemalePrefixes.json', jsonString);	  
+    const jsonBString = JSON.stringify(findCommonPrefixes).trim()
+    await fsPromises.writeFile('./src/commonFemalePrefixes.json', jsonBString);	  
     console.log('Data has been written to corpus.json');
   } catch (error) {
     console.error('Error writing to file:', error);
@@ -208,7 +208,7 @@ async function getData(){
   }
   }
 
-getData()
+//getData()
 
 function formatJSONData(data) {
   const formattedData = [];
