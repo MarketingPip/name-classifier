@@ -119,7 +119,7 @@ async function writeToFile() {
   try {
     const jsonString = JSON.stringify(commonSuffixes).trim()
     await fsPromises.writeFile('./src/commonFemaleSuffixes.json', jsonString);
-    const jsonBString = JSON.stringify(findCommonPrefixes).trim()
+    const jsonBString = JSON.stringify(commonPrefixes).trim()
     await fsPromises.writeFile('./src/commonFemalePrefixes.json', jsonBString);	  
     console.log('Data has been written to corpus.json');
   } catch (error) {
