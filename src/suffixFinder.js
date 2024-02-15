@@ -70,7 +70,7 @@ function findCommonSuffixes(words) {
 
 
 // Example usage:
-const words = [...femaleNames.map(name => normalizeString(name.toLowerCase()))]
+const words = [...maleNames.map(name => normalizeString(name.toLowerCase()))]
 const commonSuffixes = findCommonSuffixes(words);
 
 
@@ -118,9 +118,9 @@ const commonPrefixes = findCommonPrefixes(words);
 async function writeToFile() {
   try {
     const jsonString = JSON.stringify(commonSuffixes).trim()
-    await fsPromises.writeFile('./src/commonFemaleSuffixes.json', jsonString);
+    await fsPromises.writeFile('./src/commonMaleSuffixes.json', jsonString);
     const jsonBString = JSON.stringify(commonPrefixes).trim()
-    await fsPromises.writeFile('./src/commonFemalePrefixes.json', jsonBString);	  
+    await fsPromises.writeFile('./src/commonMalePrefixes.json', jsonBString);	  
     console.log('Data has been written to corpus.json');
   } catch (error) {
     console.error('Error writing to file:', error);
