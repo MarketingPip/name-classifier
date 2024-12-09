@@ -81,30 +81,21 @@ function checkGenderBySuffix(wordString) {
     const maleSuffixes = ["Mr.", "Mister", "Senior", "Jr.", "Junior", "King", "Pope", "Prince", "Sir", "Father", "Lord", "Bro.", "Fr.", "Uncle", "Grandpa", "Opa", "Emperor"];
     const femaleSuffixes = ["Mrs.", "Miss", "Queen", "Princess", "Madam", "Ms.", "Sister", "Madame", "Lady", "Sis.", "Duchess", "Countess", "Abbess", "Aunt", "Grandma", "Oma", "Mother", "Mademoiselle", "First Lady", "Actress"];
 
-    const maleRegex = new RegExp("\\b^(" + maleSuffixes.join("|") + ")(\\s*)\\b", "i");
-    const femaleRegex = new RegExp("\\b^(" + femaleSuffixes.join("|") + ")(\\s*)\\b", "i");
+ // Split the string and remove periods
+  const words = wordString.split(" ").map(word => word.replaceAll('.', '').toLowerCase());
 
-  
-    const suffixRegex = new RegExp(`^(${maleSuffixes.concat(femaleSuffixes).join('|')})(\\.|\\s*)`, 'i');
-  
+  // Check if there are two words and the first word matches any suffix
+  if (words.length === 2) {
+    const [firstWord] = words;
 
-  // Remove any suffixes and check to make sure valid string.
-  // Example of invalid: "Actress", Example of valid: "Actress Sharon"
-const results = (wordString.replace(/[^a-zA-Z]/g, '').replace(suffixRegex, '').trim() !== "") && wordString.replace(/[^a-zA-Z]/g, '').replace(suffixRegex, '').trim();
-
-
-    if(!results){
-      return "INVALID"
+    if (maleSuffixes.map(suffix => suffix.toLowerCase()).includes(firstWord)) {
+      return "Male";
+    } else if (femaleSuffixes.map(suffix => suffix.toLowerCase()).includes(firstWord)) {
+      return "Female";
     }
-  
-  
-    if (maleRegex.test(wordString)) {
-        return "Male";
-    } else if (femaleRegex.test(wordString)) {
-        return "Female";
-    } else {
-        return "Unknown";
-    }
+  }
+
+  return "Unknown";
 }
 
 
